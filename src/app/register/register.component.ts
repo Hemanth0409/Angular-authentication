@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { UserDetailsService } from 'src/service/user-details.service';
 
 @Component({
   selector: 'app-register',
@@ -10,8 +10,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup = new FormGroup({})
-  constructor(private formBuilder: FormBuilder) { }
-  regirationForm!: FormGroup ;
+  constructor(private formBuilder: FormBuilder, private userDetails: UserDetailsService) { }
+  regirationForm!: FormGroup;
   firstName: FormControl | any;
   lastName: FormControl | any;
   userEmail: FormControl | any;
@@ -34,16 +34,16 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$')
       ]),
-    this.regirationForm = new FormGroup({
-      firstName: this.firstName,
-      lastName: this.lastName,
-      userEmail: this.userEmail,
-      password: this.password,
-      isLogged: this.formBuilder.control(false),
-    });
+      this.regirationForm = new FormGroup({
+        firstName: this.firstName,
+        lastName: this.lastName,
+        userEmail: this.userEmail,
+        password: this.password,
+        isLogged: this.formBuilder.control(false),
+      });
   }
   onSubmit(form: any) {
-    console.log(form.value)
+    return this.userDetails.getUserDetails(form.value);
   }
 
 }

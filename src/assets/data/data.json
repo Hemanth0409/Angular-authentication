@@ -1,0 +1,14 @@
+{
+    "userDetails": [{
+        "firstName": "Sharon",
+        "lastName": "D",
+        "userEmail": "sharon@gmail.com",
+        "password": "Sharon!23",
+        "isLogged": false,
+        "id": 1
+    }],
+    "Admin": [{
+        "email": "Admin123@gmail.com",
+        "password": "Sharon!23"
+    }]
+}
