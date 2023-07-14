@@ -1,0 +1,93 @@
+<body>
+    <div class="container border border-1 mt-5 mb-4">
+        <div class="row justify-content-center mt-5 mb-4">
+            <div class="col-lg-4 col-md-12 shadow-lg">
+                <form [formGroup]="regirationForm">
+                    <div class="form-group">
+                        <div class="text-center">
+                            <p class="fs-2 mt-4">Registration Form</p>
+                        </div>
+
+
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form3Example1" formControlName="firstName" class="form-control" placeholder="First Name" [ngClass]="{'is-invalid':firstName.errors &&
+                                        (firstName.touched || firstName.dirty),'is-valid': firstName.valid}" />
+                            <div class="invalid-feedback text-start fs-6 fst-normal text-danger justify-content-center ">
+                                <h6 *ngIf="firstName.errors?.required" class="text-danger text-center">Required field
+                                </h6>
+                                <h6 *ngIf="firstName.errors?.minlength" class="text-danger text-center">First name length must be greater than {{ firstName.errors?.minlength.requiredLength }} characters. {{firstName.errors?.minlength.requiredLength -firstName.errors?.minlength.actualLength}}more characters required.
+                                </h6>
+                                <h6 *ngIf="firstName.errors?.maxlength" class="text-danger text-center">First name length must be less than 16 characters
+                                </h6>
+                            </div>
+                        </div>
+
+
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form3Example2" formControlName="lastName" class="form-control" placeholder="Last Name" [ngClass]="{'is-invalid':lastName.errors &&
+                            (lastName.touched || lastName.dirty),'is-valid': lastName.valid}" />
+                            <div class="invalid-feedback text-start fs-6 fst-normal text-danger justify-content-center ">
+                                <h6 *ngIf="lastName.errors?.required" class="text-danger text-center">Required field
+                                </h6>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Email input -->
+                        <div class=" form-outline mb-4">
+                            <input type="email" id="form3Example3" formControlName="userEmail" class="form-control" placeholder="Email address" [ngClass]="{ 'is-invalid':userEmail.errors && (userEmail.touched || userEmail.dirty), 'is-valid':userEmail.valid} " />
+                            <div class="invalid-feedback text-start fs-6 fst-normal text-danger justify-content-center ">
+                                <h6 *ngIf="userEmail.errors?.required" class="text-danger text-center">Required</h6>
+                                <h6 *ngIf="userEmail.errors?.pattern" class="text-danger text-center">Correct Format
+                                </h6>
+                            </div>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4 ">
+                            <input type="password" id="form3Example4" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid':password.errors&&(password.touched||password.dirty), 'is-valid':password.valid} " />
+                            <div class="invalid-feedback text-start fs-6 fst-normal text-danger justify-content-center">
+                                <h6 *ngIf="password.errors?.required" class="text-danger text-center">Required</h6>
+                                <h6 *ngIf="password.errors?.pattern" class="text-danger text-center">Atleast 8 characters length,Contains atleast(1 Uppercase,1 number,1 special character,1 lowercase)
+                                </h6>
+                            </div>
+                        </div>
+
+                        <!-- Checkbox -->
+                        <div class="form-check d-flex justify-content-center mb-4">
+                            <input class="form-check-input me-2" type="checkbox" id="form2Example33" checked />
+                            <label class="form-check-label" for="form2Example33">
+                                Subscribe Confirmation
+                            </label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4 col-12" [disabled]="!regirationForm.valid" (click)="onSubmit(regirationForm)">register</button>
+
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                            <p>or sign up with:</p>
+                            <button type="button" class="btn btn-secondary btn-floating mx-1">
+                                <i class="fab fa-facebook-f "></i>
+                            </button>
+
+                            <button type="button" class="btn btn-secondary btn-floating mx-1">
+                                <i class="fab fa-google"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-secondary btn-floating mx-1">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-secondary btn-floating mx-1">
+                                <i class="fab fa-github "></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
