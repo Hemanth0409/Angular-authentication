@@ -1,14 +1,40 @@
 {
-    "userDetails": [{
-        "firstName": "Sharon",
-        "lastName": "D",
-        "userEmail": "sharon@gmail.com",
-        "password": "Sharon!23",
-        "isLogged": false,
-        "id": 1
-    }],
-    "Admin": [{
-        "email": "Admin123@gmail.com",
-        "password": "Sharon!23"
-    }]
+  "userDetails": [
+    {
+      "firstName": "admin",
+      "lastName": "1",
+      "userEmail": "Admin123@gmail.com",
+      "password": "Admin!234",
+      "isLogged": false,
+      "role": "Admin",
+      "id": 1
+    },
+    {
+      "firstName": "Sharon",
+      "lastName": "D",
+      "userEmail": "sharon@gmail.com",
+      "password": "Sharon!23",
+      "isLogged": false,
+      "role": "User",
+      "id": 2
+    },
+    {
+      "firstName": "sharon",
+      "lastName": "david",
+      "userEmail": "sharon13@gmail.com",
+      "password": "Sharon!23",
+      "isLogged": false,
+      "role": "User",
+      "id": 3
+    },
+    {
+      "firstName": "harshanr",
+      "lastName": "A",
+      "userEmail": "harshan@gmail.com",
+      "password": "Harshan!2",
+      "isLogged": false,
+      "role": "User",
+      "id": 4
+    }
+  ]
 }

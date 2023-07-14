@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { userDetails } from 'src/model/userDetails';
 import { UserDetailsService } from 'src/service/user-details.service';
 
 @Component({
@@ -9,13 +10,32 @@ import { UserDetailsService } from 'src/service/user-details.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  form: FormGroup = new FormGroup({})
+  form: FormGroup = new FormGroup({
+    
+  })
   constructor(private formBuilder: FormBuilder, private userDetails: UserDetailsService) { }
-  regirationForm!: FormGroup;
+  regirationForm! : FormGroup;
   firstName: FormControl | any;
   lastName: FormControl | any;
   userEmail: FormControl | any;
   password: FormControl | any;
+
+  userDetailReg:userDetails={
+    firstName: '',
+    lastName: '',
+    userEmail: '',
+    password: '',
+    isLogged: false,
+    role: 'User',
+    id: 0
+  }
+  onSubmit() {
+    this.userDetailReg.firstName=this.firstName.value;
+    this.userDetailReg.lastName=this.lastName.value;
+    this.userDetailReg.userEmail=this.userEmail.value;
+    this.userDetailReg.password=this.password.value;
+    this.userDetails.getUserDetails(this.userDetailReg);
+  }
 
   ngOnInit(): void {
     this.firstName = new FormControl('', [
@@ -41,9 +61,6 @@ export class RegisterComponent implements OnInit {
         password: this.password,
         isLogged: this.formBuilder.control(false),
       });
-  }
-  onSubmit(form: any) {
-    return this.userDetails.getUserDetails(form.value);
   }
 
 }

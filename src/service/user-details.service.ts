@@ -11,9 +11,8 @@ export class UserDetailsService {
 
   constructor(private http: HttpClient, private router: Router) { }
   userDetails = "http://localhost:3000/userDetails";
-  admin = 'http://localhost:3000/Admin';
-  
-  getUserDetails(form: string | number) {
+
+  getUserDetails(form: userDetails) {
     return this.http.post<userDetails[]>(this.userDetails, form).subscribe(() => {
       const Toast = Swal.mixin({
         toast: true,
@@ -30,8 +29,17 @@ export class UserDetailsService {
       })
     })
   }
-
+  isLogged(form: userDetails, id: number) {
+    let Url = this.userDetails + '/' + id ;
+    form.isLogged = true;
+    return this.http.put(Url, form).subscribe(() => { });
+  }
+  isLoggedOff(form:userDetails, id: number) {
+    let Url = this.userDetails + '/' + id ;
+    form.isLogged = false;
+    return this.http.put(Url, form).subscribe(() => { });
+  }
   validateUser() {
-
+    return this.http.get<userDetails[]>(this.userDetails);
   }
 }

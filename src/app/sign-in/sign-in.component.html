@@ -2,28 +2,36 @@
     <div class="container border border-1 mt-5 mb-4">
         <div class="row justify-content-center mt-5 mb-4">
             <div class="col-lg-4 col-md-12 shadow-lg">
-                <form>
+                <form [formGroup]="signInForm">
                     <div class="form-group">
                         <div class="text-center">
                             <p class="fs-2 mt-4">Sign In Form</p>
                         </div>
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <input type="email" id="form2Example1" class="form-control" />
-                            <label class="form-label" for="form2Example1">Email address</label>
+                            <input type="email" id="form3Example3" formControlName="signInMail" class="form-control" placeholder="Email address" [ngClass]="{ 'is-invalid':signInMail.errors && (signInMail.touched || signInMail.dirty), 'is-valid':signInMail.valid} " />
+                            <div class="invalid-feedback text-start fs-6 fst-normal text-danger justify-content-center ">
+                                <h6 *ngIf="signInMail.errors?.required" class="text-danger text-center">Required</h6>
+                                <h6 *ngIf="signInMail.errors?.pattern" class="text-danger text-center">Correct Format
+                                </h6>
+                            </div>
                         </div>
 
-                        <!-- Password input -->
+                        <!-- signInPassword input -->
                         <div class="form-outline mb-4">
-                            <input type="password" id="form2Example2" class="form-control" />
-                            <label class="form-label" for="form2Example2">Password</label>
+                            <input type="password" id="form3Example4" class="form-control" formControlName="signInPassword" placeholder="Password" [ngClass]="{ 'is-invalid':signInPassword.errors&&(signInPassword.touched||signInPassword.dirty), 'is-valid':signInPassword.valid} "
+                            />
+                            <div class="invalid-feedback text-start fs-6 fst-normal text-danger justify-content-center">
+                                <h6 *ngIf="signInPassword.errors?.required" class="text-danger text-center">Required</h6>
+                                <h6 *ngIf="signInPassword.errors?.pattern" class="text-danger text-center">Atleast 8 characters length,Contains atleast(1 Uppercase,1 number,1 special character,1 lowercase)
+                                </h6>
+                            </div>
+
                         </div>
-
-
                     </div>
 
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                    <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="!signInForm.valid" (click)="onSubmit()">Sign in</button>
 
                     <!-- Register buttons -->
                     <div class="text-center">

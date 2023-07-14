@@ -13,13 +13,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     AuthenticationComponent,
     NavbarComponent,
     RegisterComponent,
-    SignInComponent
+    SignInComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
