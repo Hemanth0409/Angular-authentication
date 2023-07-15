@@ -4,6 +4,7 @@ import { UserDetailsService } from 'src/service/user-details.service';
 import { userDetails } from 'src/model/userDetails';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { LoginSubjectService } from 'src/service/login-subject.service';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class SignInComponent implements OnInit {
   form: FormGroup = new FormGroup({})
 
-  constructor(private userDetail: UserDetailsService,private router:Router) { }
+  constructor(private userDetail: UserDetailsService, private router: Router, private sub: LoginSubjectService) { }
 
   signInForm!: FormGroup;
   signInMail: FormControl | any;
@@ -38,49 +39,60 @@ export class SignInComponent implements OnInit {
       const user = this.loginDetails.find((details: userDetails) => {
         if (details.userEmail === this.signInForm.value.signInMail &&
           details.password === this.signInForm.value.signInPassword && details.role == 'Admin') {
-
           this.userDetail.isLogged(details, details.id);
-          console.log(details.role)
+          console.log(details.role);
+          if (details.role=='Admin') {
+            this.signInForm.reset();
+            localStorage.setItem('token', Math.random().toString())
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top',
+              showConfirmButton: false,
+              timer: 2000,
+              timerProgressBar: true,
+            });
+            Toast.fire({
+              icon: 'success',
+              title: 'Logged successfully',
+            }).then(() => {
+              this.router.navigate(['/home']);
+              this.sub.validateSubject(true)
+            });
+          }
           return true;
         }
         else if (details.userEmail === this.signInForm.value.signInMail &&
           details.password === this.signInForm.value.signInPassword && details.role == 'User') {
           this.userDetail.isLogged(details, details.id);
+          console.log(details.role);
+          if (details.role=='User') {
+            this.signInForm.reset();
+            localStorage.setItem('token', Math.random().toString())
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top',
+              showConfirmButton: false,
+              timer: 2000,
+              timerProgressBar: true,
+            });
+            Toast.fire({
+              icon: 'success',
+              title: 'Logged successfully',
+            }).then(() => {
+              this.router.navigate(['/registration']);
+              this.sub.validateSubject(true)
+            });
+          }
           return true;
+
         }
+       
         return false
       });
-      if (user) {
-        this.signInForm.reset();
-        localStorage.setItem('token', Math.random().toString())
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          timer: 2000,
-          timerProgressBar: true,
-        });
-        Toast.fire({
-          icon: 'success',
-          title: 'Logged successfully',
-        }).then(() => {
-          this.router.navigate(['/home']);
-        });
-      } else {
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          timer: 1000,
-          timerProgressBar: true,
-        });
-        Toast.fire({
-          icon: 'error',
-          title: 'Went wrong',
-        });
-        this.signInForm.reset();
-      }
+
+
     });
-    
+
+
   }
 }

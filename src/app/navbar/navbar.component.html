@@ -12,25 +12,25 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <!-- Nav -->
             <div class="navbar-nav mx-lg-auto">
-                <a class="nav-item nav-link active" href="#" aria-current="page">Home</a>
+                <a class="nav-item nav-link active" routerLink="home" aria-current="page">Home</a>
                 <a class="nav-item nav-link" href="#">Product</a>
                 <a class="nav-item nav-link" href="#">Features</a>
                 <a class="nav-item nav-link" href="#">Pricing</a>
             </div>
             <!-- Right navigation -->
             <div class="navbar-nav ms-lg-4">
-                <a class="nav-item nav-link" routerLink="/signin">Sign in</a>
+                <a class="nav-item nav-link" routerLink="/signin" *ngIf="!subject">Sign in</a>
             </div>
 
             <!-- Action -->
             <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
-                <a routerLink="/registration" class="btn btn-sm btn-primary w-full w-lg-auto">
+                <a routerLink="/registration" class="btn btn-sm btn-primary w-full w-lg-auto" *ngIf="!subject">
                     Register
                 </a>
             </div>
 
             <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
-                <a routerLink="/" class="btn btn-sm btn-primary w-full w-lg-auto" (click)=" logout()">
+                <a routerLink="/" class="btn btn-sm btn-primary w-full w-lg-auto" (click)=" logout()" *ngIf="subject">
                     Logout
                 </a>
             </div>

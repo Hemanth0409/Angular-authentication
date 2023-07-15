@@ -1,15 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserDetailsService } from 'src/service/user-details.service';
 import Swal from 'sweetalert2';
-
+import { LoginSubjectService } from 'src/service/login-subject.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-  constructor(private router: Router, private details: UserDetailsService) { }
+export class NavbarComponent implements OnInit {
+  constructor(private router: Router, private details: UserDetailsService, private sub: LoginSubjectService) { }
+  subject: boolean = false;
+  ngOnInit(): void {
+    this.sub.loginSubject.subscribe(data => { 
+      this.subject = data 
+    });
+    
+  }
+
+
+
   profile: any
   logout() {
     this.details.validateUser().subscribe((res) => {
@@ -28,7 +38,8 @@ export class NavbarComponent {
             icon: 'success',
             title: 'Logged successfully'
           }).then(() => {
-            this.router.navigate(['/']);
+            this.router.navigate(['/signin']);
+            window.location.reload();
           })
           return true;
         }
