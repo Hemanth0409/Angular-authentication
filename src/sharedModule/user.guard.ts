@@ -22,7 +22,7 @@ export const userGuard: CanActivateFn = (route, state) => {
       icon: 'warning',
       title: 'Logged In Successfully'
     })
-    return false
+    return false;  
   }
 
 };

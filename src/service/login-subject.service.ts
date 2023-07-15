@@ -6,16 +6,12 @@ import { Subject } from 'rxjs';
 export class LoginSubjectService {
   userUrl = 'http://localhost:3000/userDetails'
   constructor() { }
-  public loginSubject = new Subject<boolean>();
-
-  validateSubject(data: boolean) {
-    return this.loginSubject.next(data)
+  public loginSubjectAdmin = new Subject<boolean>();
+public loginSubjectUser=new Subject<boolean>();
+  validateSubjectAdmin(data: boolean) {
+    return this.loginSubjectAdmin.next(data)
   }
-  value?: boolean
-  getLoginStatus() {
-    this.loginSubject.subscribe(data => {
-      this.value = data
-    });
-    return this.value;
+  validateSubjectUser(val: boolean) {
+    return this.loginSubjectUser.next(val)
   }
 }

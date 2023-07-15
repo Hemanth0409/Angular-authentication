@@ -5,7 +5,7 @@
       "lastName": "1",
       "userEmail": "Admin123@gmail.com",
       "password": "Admin!234",
-      "isLogged": true,
+      "isLogged": false,
       "role": "Admin",
       "id": 1
     },

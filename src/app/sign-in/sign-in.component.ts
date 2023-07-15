@@ -56,7 +56,7 @@ export class SignInComponent implements OnInit {
               title: 'Logged successfully',
             }).then(() => {
               this.router.navigate(['/home']);
-              this.sub.validateSubject(true)
+              this.sub.validateSubjectAdmin(true)
             });
           }
           return true;
@@ -80,7 +80,7 @@ export class SignInComponent implements OnInit {
               title: 'Logged successfully',
             }).then(() => {
               this.router.navigate(['/registration']);
-              this.sub.validateSubject(true)
+              this.sub.validateSubjectUser(true)
             });
           }
           return true;

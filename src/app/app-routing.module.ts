@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { HomeComponent } from './home/home.component';
-const routes: Routes = [
+import { userGuard } from 'src/sharedModule/user.guard';
+   const routes: Routes = [
   {
     path: 'registration', component: RegisterComponent
   },
@@ -11,7 +12,7 @@ const routes: Routes = [
     path: 'signin', component:SignInComponent
   },
   {
-    path:'home',component:HomeComponent
+    path:'home',component:HomeComponent,canActivate:[userGuard]
   }
   
 ];

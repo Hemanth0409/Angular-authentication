@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserDetailsService } from 'src/service/user-details.service';
 import Swal from 'sweetalert2';
 import { LoginSubjectService } from 'src/service/login-subject.service';
+import { userDetails } from 'src/model/userDetails';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,12 +11,27 @@ import { LoginSubjectService } from 'src/service/login-subject.service';
 })
 export class NavbarComponent implements OnInit {
   constructor(private router: Router, private details: UserDetailsService, private sub: LoginSubjectService) { }
-  subject: boolean = false;
+  Admin: boolean = false;
+  User: boolean = false;
+  loginDetails: any;
   ngOnInit(): void {
-    this.sub.loginSubject.subscribe(data => { 
-      this.subject = data 
-    });
-    
+    this.details.validateUser().subscribe((res) => {
+      this.loginDetails = res;
+      this.loginDetails.find((data: userDetails) => {
+        if (data.role == 'Admin') {
+          this.sub.loginSubjectAdmin.subscribe(data => {
+            this.Admin = data
+          });
+        }
+        else if (data.role == 'User') {
+          this.sub.loginSubjectUser.subscribe(val => {
+            this.User = val
+          });
+        }
+      })
+    })
+
+
   }
 
 
