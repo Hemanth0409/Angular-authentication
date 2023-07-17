@@ -1,0 +1,38 @@
+button {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+    padding: 3px 5px;
+    text-align: center;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: #725AC1;
+    background: transparent;
+    cursor: pointer;
+    transition: ease-out 0.5s;
+    border: 2px solid #725AC1;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 0 #725AC1;
+}
+
+button:hover {
+    color: white;
+    box-shadow: inset 0 -100px 0 0 #725AC1;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
+#create {
+    width: 100px;
+}
+
+#edit {
+    width: 100px;
+}
+
+#delete {
+    width: 100px;
+}

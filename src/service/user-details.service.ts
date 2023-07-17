@@ -25,7 +25,7 @@ export class UserDetailsService {
         icon: 'success',
         title: 'Registered successfully'
       }).then(() => {
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/']);
       })
     })
   }

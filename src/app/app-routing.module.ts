@@ -13,10 +13,10 @@ const routes: Routes = [
     path: '', component: SignInComponent
   },
   {
-    path: 'home', component: HomeComponent, canActivate: [userGuard]
+    path: 'home', component: HomeComponent, /*canActivate: [userGuard]*/
   },
   {
-    path: 'user', component: UserComponent,canActivate: [userGuard]
+    path: 'user', component: UserComponent,/*canActivate: [userGuard]*/
   }
 
 ];

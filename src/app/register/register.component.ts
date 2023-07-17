@@ -10,9 +10,7 @@ import { UserDetailsService } from 'src/service/user-details.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  form: FormGroup = new FormGroup({
-    
-  })
+  form: FormGroup = new FormGroup({  })
   constructor(private formBuilder: FormBuilder, private userDetails: UserDetailsService) { }
   regirationForm! : FormGroup;
   firstName: FormControl | any;
@@ -27,14 +25,14 @@ export class RegisterComponent implements OnInit {
     password: '',
     isLogged: false,
     role: 'User',
-    id: 0
+    id: 0,
   }
   onSubmit() {
     this.userDetailReg.firstName=this.firstName.value;
     this.userDetailReg.lastName=this.lastName.value;
     this.userDetailReg.userEmail=this.userEmail.value;
     this.userDetailReg.password=this.password.value;
-    this.userDetails.getUserDetails(this.userDetailReg);
+    this.userDetails.getUserDetails(this.userDetailReg); 
   }
 
   ngOnInit(): void {
@@ -60,6 +58,7 @@ export class RegisterComponent implements OnInit {
         userEmail: this.userEmail,
         password: this.password,
         isLogged: this.formBuilder.control(false),
+      
       });
   }
 
