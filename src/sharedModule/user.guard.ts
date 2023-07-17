@@ -10,7 +10,7 @@ export const userGuard: CanActivateFn = (route, state) => {
     return true
   }
   else {
-    router.navigate(['/signin'])
+    router.navigate(['/'])
     const Toast = Swal.mixin({
       toast: true,
       position: 'top',

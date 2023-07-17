@@ -4,17 +4,21 @@ import { RegisterComponent } from './register/register.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { HomeComponent } from './home/home.component';
 import { userGuard } from 'src/sharedModule/user.guard';
-   const routes: Routes = [
+import { UserComponent } from './user/user.component';
+const routes: Routes = [
   {
     path: 'registration', component: RegisterComponent
   },
   {
-    path: 'signin', component:SignInComponent
+    path: '', component: SignInComponent
   },
   {
-    path:'home',component:HomeComponent,canActivate:[userGuard]
+    path: 'home', component: HomeComponent, canActivate: [userGuard]
+  },
+  {
+    path: 'user', component: UserComponent,canActivate: [userGuard]
   }
-  
+
 ];
 
 @NgModule({

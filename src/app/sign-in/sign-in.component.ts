@@ -25,7 +25,7 @@ export class SignInComponent implements OnInit {
     ]),
       this.signInPassword = new FormControl('', [
         Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$')
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8}$')
       ]),
       this.signInForm = new FormGroup({
         signInMail: this.signInMail,
@@ -79,7 +79,7 @@ export class SignInComponent implements OnInit {
               icon: 'success',
               title: 'Logged successfully',
             }).then(() => {
-              this.router.navigate(['/registration']);
+              this.router.navigate(['/user']);
               this.sub.validateSubjectUser(true)
             });
           }

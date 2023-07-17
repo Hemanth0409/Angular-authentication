@@ -1,10 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-0 py-3">
     <div class="container-xl">
         <!-- Logo -->
-        <a class="navbar-brand me-5" routerLink="#">
-            <img src="https://png.pngtree.com/element_pic/16/11/02/bd886d7ccc6f8dd8db17e841233c9656.jpg" class="h-12 bg-transparent" alt="...">
-        </a>
-        <h5 class="text-white fs-1 text-center me-2">TODO LIST</h5>
+
+        <h5 class="text-white fs-3 text-center">TODO LIST</h5>
         <!-- Navbar toggle -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -14,21 +12,19 @@
             <!-- Nav -->
 
             <div class="navbar-nav mx-lg-auto">
-                <a class="nav-item nav-link active" routerLink="home" aria-current="page" *ngIf="Admin">Home</a>
-                <a class="nav-item nav-link" routerLink="#" *ngIf="User||Admin">Product</a>
-                <a class="nav-item nav-link" routerLink="#" *ngIf="User||Admin">Features</a>
-                <a class="nav-item nav-link" routerLink="#" *ngIf="User||Admin">Pricing</a>
+                <a class="nav-item nav-link fs-5" routerLink="home" id="item" aria-current="page" *ngIf="Admin">Admin</a>
+                <a class="nav-item nav-link fs-5" routerLink="/user" id="item" *ngIf="User||Admin">User</a>
             </div>
             <!-- Right navigation -->
             <div class="navbar-nav ms-lg-4">
-                <a class="nav-item nav-link" routerLink="/signin" *ngIf="!Admin&&!User">Sign in</a>
+                <a routerLink="/registration" class="nav-item nav-link" id="item" *ngIf="!Admin && !User">
+                    Register
+                </a>
             </div>
 
             <!-- Action -->
             <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
-                <a routerLink="/registration" class="btn btn-sm btn-primary w-full w-lg-auto" *ngIf="!Admin && !User">
-                    Register
-                </a>
+                <a class="btn btn-sm btn-primary w-full w-lg-auto " routerLink="/" *ngIf="!Admin&&!User">Sign in</a>
             </div>
 
             <div class="d-flex align-items-lg-center mt-3 mt-lg-0">

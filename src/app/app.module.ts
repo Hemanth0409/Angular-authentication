@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     RegisterComponent,
     SignInComponent,
-    HomeComponent
+    HomeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

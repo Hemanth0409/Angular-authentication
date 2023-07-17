@@ -3,9 +3,9 @@
     {
       "firstName": "admin",
       "lastName": "1",
-      "userEmail": "Admin123@gmail.com",
+      "userEmail": "admin123@gmail.com",
       "password": "Admin!234",
-      "isLogged": false,
+      "isLogged": true,
       "role": "Admin",
       "id": 1
     },
@@ -14,7 +14,7 @@
       "lastName": "D",
       "userEmail": "sharon@gmail.com",
       "password": "Sharon!23",
-      "isLogged": false,
+      "isLogged": true,
       "role": "User",
       "id": 2
     },
