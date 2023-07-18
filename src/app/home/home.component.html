@@ -1,13 +1,14 @@
 <div class="container">
     <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-     Add Task
-      </button>
+        Add Task
+    </button>
     <table class="table">
         <thead>
             <tr class="text-center">
                 <th scope="col">id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
+
                 <th scope="col">operation</th>
             </tr>
         </thead>
@@ -33,23 +34,30 @@
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-            </div>
-            <div class="modal-body">
-                <label for="Task">Task</label> <input type="text" class="form-control">
-                <label for="user">User</label>
-                <select class="form-control" name="User" id="User">
-                    <option *ngFor="let user of details">
-                        <span  *ngIf="user.role == 'User'">{{user.id}}:{{user.firstName}}  {{user.lastName}}</span></option>
+    <form [formGroup]="assignTask">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                </div>
+                <div class="modal-body ">
+
+                    <label for="Task">Task</label> <input type="text" class="form-control" formControlName="task" [(ngModel)]="userTask.task">
+
+                    <label for="user ">User</label>
+                    <select class="form-control" name="User" formControlName="user" (change)="getId()" [(ngModel)]="userTask.firstName" id="User">
+                        
+                            <option *ngFor="let user of details">
+                                <span *ngIf="user.role=='User'">{{user.firstName}}</span>
+                            </option>
                     </select>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Assign</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" (click)="createTask(assignTask)" data-bs-dismiss="modal">Assign</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>

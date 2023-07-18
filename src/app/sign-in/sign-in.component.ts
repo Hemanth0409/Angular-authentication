@@ -36,12 +36,12 @@ export class SignInComponent implements OnInit {
   onSubmit() {
     this.userDetail.validateUser().subscribe((res) => {
       this.loginDetails = res;
-      const user = this.loginDetails.find((details: userDetails) => {
+      this.loginDetails.find((details: userDetails) => {
         if (details.userEmail === this.signInForm.value.signInMail &&
           details.password === this.signInForm.value.signInPassword && details.role == 'Admin') {
           this.userDetail.isLogged(details, details.id);
           console.log(details.role);
-          if (details.role=='Admin') {
+          if (details.role == 'Admin') {
             this.signInForm.reset();
             localStorage.setItem('token', Math.random().toString())
             const Toast = Swal.mixin({
@@ -65,7 +65,7 @@ export class SignInComponent implements OnInit {
           details.password === this.signInForm.value.signInPassword && details.role == 'User') {
           this.userDetail.isLogged(details, details.id);
           console.log(details.role);
-          if (details.role=='User') {
+          if (details.role == 'User') {
             this.signInForm.reset();
             localStorage.setItem('token', Math.random().toString())
             const Toast = Swal.mixin({
@@ -86,7 +86,7 @@ export class SignInComponent implements OnInit {
           return true;
 
         }
-       
+
         return false
       });
 
