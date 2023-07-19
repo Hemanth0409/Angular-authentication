@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private userDetail: UserDetailsService, private taskdetails: TaskService) { }
 
   details: userDetails[] = [];
+  fetchDetails: taskdetails[] = [];
   userD: userDetails = {
     id: 0,
     firstName: '',
@@ -27,39 +28,42 @@ export class HomeComponent implements OnInit {
   taskDetails: taskdetails[] = [];
   userTask: taskdetails = {
     id: 0,
-    userId:0,
+    userId: 0,
     firstName: '',
     task: ''
   };
   assignTask!: FormGroup;
   task!: FormControl;
   user!: FormControl;
-  userId:FormControl|any;
+
   getId() {
-    this.taskdetails.fetchId(this.userTask.firstName).subscribe((res) => {
-      this.userTask.id = res[0].id;
-      console.log(this.userTask.id)
+    return this.taskdetails.fetchId(this.userTask.firstName).subscribe((res) => {
+      this.userTask.userId = res[0].id;
     })
   }
 
-  // createTask(task:FormGroup) {
-  //   this.taskdetails.taskDetails(task.value);
-  //   this.assignTask.reset();
-  // } 
-   createTask(task: FormGroup) {
-    this.taskdetails.taskDetails(this.userTask)
-    // this.taskdetails.taskDetails(task.value);
-    this.userTask.userId=this.userD.id;
+  createTask(task: FormGroup) {
     this.assignTask.reset();
-  }
- 
+    return this.taskdetails.taskDetails(this.userTask);
 
-  removeTask(task: userDetails) {
+  }
+
+  taskInfo(id: number) {
+    return this.taskdetails.fetchTask(id).subscribe((res) => this.fetchDetails = res);
+  }
+  // updateTaskInfo(id: number) {
+  //   return this.taskdetails.updatetask(id).subscribe((res) => this.fetchDetails = res)
+  // }
+  removeTask(id:number) {
+    return this.taskdetails.deleteTask(id).subscribe((res) => this.fetchDetails = res);
   }
 
   ngOnInit(): void {
     this.userDetail.validateUser().subscribe((res) => {
       this.details = res;
+    })
+    this.taskdetails.getUser().subscribe((res) => {
+      this.taskDetails = res
     })
     this.task = new FormControl('', [Validators.required]);
     this.user = new FormControl('', [Validators.required]);

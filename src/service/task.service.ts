@@ -14,10 +14,21 @@ export class TaskService {
   taskdata = "http://localhost:3000/task";
 
   fetchId(firstName: string) {
-    const url = this.userDetails + '/?firstName' + firstName;
-    return this.http.get<userDetails[]>(url)
+    const url = this.userDetails + '/?firstName=' + firstName;
+    return this.http.get<userDetails[]>(url);
   }
-
+  fetchTask(id: number) {
+    return this.http.get<taskdetails[]>(this.taskdata + '?userId_like=' + id);
+  }
+  // updatetask(id: number) {
+  //   return this.http.put<taskdetails[]>(this.taskdata + '?id_like=' + id);
+  // }
+  deleteTask(id:number){
+    return this.http.delete<taskdetails[]>(this.taskdata + '?id_like=' + id);
+  }
+  getUser() {
+    return this.http.get<taskdetails[]>(this.taskdata);
+  }
   taskDetails(data: taskdetails) {
     return this.http.post<taskdetails[]>(this.taskdata, data).subscribe(() => {
       const Toast = Swal.mixin({

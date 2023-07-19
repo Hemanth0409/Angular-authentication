@@ -8,31 +8,64 @@
                 <th scope="col">id</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
-
-                <th scope="col">operation</th>
+                <th scope="col">task</th>
             </tr>
         </thead>
         <tbody>
-
             <tr class="text-center" *ngFor="let x of details">
-
                 <ng-container *ngIf="x.role=='User'">
                     <th scope="row">{{x.id}}</th>
                     <td>{{x.firstName|uppercase}}</td>
                     <td>{{x.userEmail}}</td>
 
-                    <td> <button> update</button>
-                        <button> delete </button>
+                    <td>
+                        <button data-bs-toggle="modal" data-bs-target="#modelViewTask" (click)="taskInfo(x.id)"><i
+                                class="fa-solid fa-list-check border broder-0">
+                                <ng-container *ngFor="let task of taskDetails">
+                                </ng-container>
+                            </i></button>
+
+                        <!-- model to view task -->
+
+                        <div class="modal fade" id="modelViewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class=" text-center mt-5">
+                                        <h5 class="modal-title" id="modelViewTaskLabel">Task</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Task</th>
+                                                    <th scope="col">Operation</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let task of fetchDetails">
+                                                    <td>{{task.task}}</td>
+                                                    <td>
+                                                        <button> update</button>
+                                                        <button (click)="removeTask(task.id)"> delete </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </ng-container>
             </tr>
         </tbody>
     </table>
 </div>
-<!-- Button trigger modal -->
 
-
-<!-- Modal -->
+<!-- Modal to create task -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <form [formGroup]="assignTask">
         <div class="modal-dialog modal-dialog-centered">
@@ -41,17 +74,13 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
                 </div>
                 <div class="modal-body ">
-
                     <label for="Task">Task</label> <input type="text" class="form-control" formControlName="task" [(ngModel)]="userTask.task">
-
                     <label for="user ">User</label>
                     <select class="form-control" name="User" formControlName="user" (change)="getId()" [(ngModel)]="userTask.firstName" id="User">
-                        
-                            <option *ngFor="let user of details">
-                                <span *ngIf="user.role=='User'">{{user.firstName}}</span>
-                            </option>
+                        <option *ngFor="let user of details">
+                            <span *ngIf="user.role=='User'">{{user.firstName}}</span>
+                        </option>
                     </select>
-
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" (click)="createTask(assignTask)" data-bs-dismiss="modal">Assign</button>
