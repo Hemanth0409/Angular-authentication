@@ -2,13 +2,19 @@
     <thead>
         <tr class="text-center">
             <th scope="col">Task</th>
-            <th scope="col">satuts</th>
+            <th scope="col">Assigned Date</th>
+            <th scope="col">Dead Line</th>
+            <th scope="col">status</th>
+
         </tr>
     </thead>
     <tbody>
-        <tr class="text-center">
-            <th scope="row"></th>
-            <td></td>
+        <tr class="text-center" *ngFor="let task of fetchDetails">
+            <td>{{task.task}}</td>
+            <td>{{task.assginedDate}}</td>
+            <td>{{task.deadLine}}(number of days)</td>
+            <td>{{task.status}}</td>
+
         </tr>
     </tbody>
 </table>

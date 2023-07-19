@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
     isLogged: false,
     role: 'User',
     id: 0,
+    taskAssigned:false
   }
   onSubmit() {
     this.userDetailReg.firstName=this.firstName.value;

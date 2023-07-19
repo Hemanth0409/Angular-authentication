@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit {
     userEmail: '',
     password: '',
     isLogged: false,
-    role: ''
+    role: '',
+    taskAssigned:false
   };
 
   taskDetails: taskdetails[] = [];
@@ -32,20 +33,25 @@ export class HomeComponent implements OnInit {
     firstName: '',
     task: '',
     status: 'assigned',
-    assginedDate: new Date().toLocaleDateString()
+    assginedDate: new Date().toLocaleDateString(),
+    deadLine:1
   };
   assignTask!: FormGroup;
   task!: FormControl;
   user!: FormControl;
+  deadLine!:FormControl;
 
   getId() {
     return this.taskdetails.fetchId(this.userTask.firstName).subscribe((res) => {
       this.userTask.userId = res[0].id;
+      
     })
   }
 
   createTask() {
     this.taskdetails.taskDetails(this.userTask);
+    //this.taskor userdetai.putTaaskActive(this.UserTask.id);
+    
     this.assignTask.reset();
 
   }
@@ -69,10 +75,12 @@ export class HomeComponent implements OnInit {
     })
     this.task = new FormControl('', [Validators.required]);
     this.user = new FormControl('', [Validators.required]);
+    this.deadLine=new FormControl('',[Validators.required])
     this.assignTask = new FormGroup({
       task: this.task,
       user: this.user,
-    })
+      deadLine:this.deadLine
+    });
 
   }
 

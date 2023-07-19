@@ -3,6 +3,7 @@ export interface taskdetails {
     task: string,
     status: string,
     assginedDate: string,
+    deadLine:number,
     userId: number,
      id: number
 }

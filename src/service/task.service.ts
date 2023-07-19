@@ -29,6 +29,9 @@ export class TaskService {
   getUser() {
     return this.http.get<taskdetails[]>(this.taskdata);
   }
+  userTask(){
+    return this.http.get<taskdetails[]>(this.taskdata );
+  }
   taskDetails(data: taskdetails) {
     return this.http.post<taskdetails[]>(this.taskdata, data).subscribe(() => {
       const Toast = Swal.mixin({

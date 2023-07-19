@@ -14,54 +14,64 @@
         <tbody>
             <tr class="text-center" *ngFor="let x of details">
                 <ng-container *ngIf="x.role=='User'">
-                    <th scope="row">{{x.id}}</th>
-                    <td>{{x.firstName|uppercase}}</td>
-                    <td>{{x.userEmail}}</td>
+                    <ng-container>
+                        <th scope="row">{{x.id}}</th>
+                        <td>{{x.firstName|uppercase}}</td>
+                        <td>{{x.userEmail}}</td>
 
-                    <td>
-                        <button data-bs-toggle="modal" data-bs-target="#modelViewTask" (click)="taskInfo(x.id)"><i
+                        <td>
+                            <button data-bs-toggle="modal" data-bs-target="#modelViewTask" (click)="taskInfo(x.id)"><i
                                 class="fa-solid fa-list-check border broder-0">
                                 <ng-container *ngFor="let task of taskDetails">
                                 </ng-container>
                             </i></button>
 
-                        <!-- model to view task -->
+                            <!-- model to view task -->
 
-                        <div class="modal fade" id="modelViewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class=" text-center mt-5">
-                                        <h5>{{x.firstName}}'s</h5>
-                                        <h5 class="modal-title" id="modelViewTaskLabel">Task</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Task</th>
-                                                    <th scope="col">Operation</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let task of fetchDetails">
-                                                    <td>{{task.task}}</td>
-                                                    <td>
-                                                        <button> update</button>
-                                                        <button (click)="removeTask(task.id)"> delete </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <div class="modal fade" id="modelViewTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class=" text-center mt-5">
+                                            <h5>{{x.firstName}}'s</h5>
+                                            <h5 class="modal-title" id="modelViewTaskLabel">Task</h5>
+                                        </div>
+                                        <div class="modal-body ">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Task</th>
+                                                        <th scope="col">Assigned Date</th>
+                                                        <th scope="col">Dead Line</th>
+                                                        <th scope="col">status</th>
+                                                        <th scope="col">Operation</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let task of fetchDetails">
+                                                        <td>{{task.task}}</td>
+                                                        <td>{{task.assginedDate}}</td>
+                                                        <td>{{task.deadLine}}(number of days)</td>
+                                                        <td>{{task.status}}</td>
+                                                        <td>
+                                                            <button> update</button>
+                                                            <button (click)="removeTask(task.id)"> delete </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
+                        </td>
+                    </ng-container>
                 </ng-container>
             </tr>
+
+
         </tbody>
     </table>
 </div>
@@ -82,6 +92,7 @@
                             <span *ngIf="user.role=='User'">{{user.firstName}}</span>
                         </option>
                     </select>
+                    <label for="Task">No of Days to complete</label> <input type="number" class="form-control" formControlName="deadLine" [(ngModel)]="userTask.deadLine">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" (click)="createTask()" data-bs-dismiss="modal">Assign</button>
