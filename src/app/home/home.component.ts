@@ -30,7 +30,9 @@ export class HomeComponent implements OnInit {
     id: 0,
     userId: 0,
     firstName: '',
-    task: ''
+    task: '',
+    status: 'assigned',
+    assginedDate: new Date().toLocaleDateString()
   };
   assignTask!: FormGroup;
   task!: FormControl;
@@ -42,9 +44,9 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  createTask(task: FormGroup) {
+  createTask() {
+    this.taskdetails.taskDetails(this.userTask);
     this.assignTask.reset();
-    return this.taskdetails.taskDetails(this.userTask);
 
   }
 
@@ -54,7 +56,7 @@ export class HomeComponent implements OnInit {
   // updateTaskInfo(id: number) {
   //   return this.taskdetails.updatetask(id).subscribe((res) => this.fetchDetails = res)
   // }
-  removeTask(id:number) {
+  removeTask(id: number) {
     return this.taskdetails.deleteTask(id).subscribe((res) => this.fetchDetails = res);
   }
 

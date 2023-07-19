@@ -1,6 +1,8 @@
-export interface taskdetails{
-    id:number,
-    userId:number,
-    firstName:string,
-    task:string
+export interface taskdetails {
+    firstName: string,
+    task: string,
+    status: string,
+    assginedDate: string,
+    userId: number,
+     id: number
 }

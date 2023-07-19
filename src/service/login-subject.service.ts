@@ -7,7 +7,7 @@ export class LoginSubjectService {
   userUrl = 'http://localhost:3000/userDetails'
   constructor() { }
   public loginSubjectAdmin = new Subject<boolean>();
-public loginSubjectUser=new Subject<boolean>();
+  public loginSubjectUser = new Subject<boolean>();
   validateSubjectAdmin(data: boolean) {
     return this.loginSubjectAdmin.next(data)
   }

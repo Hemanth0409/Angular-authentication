@@ -15,21 +15,21 @@ export class SignInComponent implements OnInit {
 
   constructor(private userDetail: UserDetailsService, private router: Router, private sub: LoginSubjectService) { }
 
-  signInForm!: FormGroup;
-  signInMail: FormControl | any;
-  signInPassword: FormControl | any;
+  signInForm: FormGroup|any;
+  mail: FormControl | any;
+  password: FormControl | any;
   ngOnInit(): void {
-    this.signInMail = new FormControl('', [
+    this.mail = new FormControl('', [
       Validators.required,
       Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
     ]),
-      this.signInPassword = new FormControl('', [
+      this.password = new FormControl('', [
         Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8}$')
       ]),
       this.signInForm = new FormGroup({
-        signInMail: this.signInMail,
-        signInPassword: this.signInPassword
+        mail: this.mail,
+        password: this.password
       })
   }
   loginDetails: any
@@ -37,8 +37,8 @@ export class SignInComponent implements OnInit {
     this.userDetail.validateUser().subscribe((res) => {
       this.loginDetails = res;
       this.loginDetails.find((details: userDetails) => {
-        if (details.userEmail === this.signInForm.value.signInMail &&
-          details.password === this.signInForm.value.signInPassword && details.role == 'Admin') {
+        if (details.userEmail === this.signInForm.value.mail &&
+          details.password === this.signInForm.value.password && details.role == 'Admin') {
           this.userDetail.isLogged(details, details.id);
           console.log(details.role);
           if (details.role == 'Admin') {
@@ -61,8 +61,8 @@ export class SignInComponent implements OnInit {
           }
           return true;
         }
-        else if (details.userEmail === this.signInForm.value.signInMail &&
-          details.password === this.signInForm.value.signInPassword && details.role == 'User') {
+        else if (details.userEmail === this.signInForm.value.mail &&
+          details.password === this.signInForm.value.password && details.role == 'User') {
           this.userDetail.isLogged(details, details.id);
           console.log(details.role);
           if (details.role == 'User') {

@@ -1,78 +1,42 @@
 {
-  "userDetails": [
-    {
-      "firstName": "admin",
-      "lastName": "1",
-      "userEmail": "admin123@gmail.com",
-      "password": "Admin!234",
-      "isLogged": false,
-      "role": "Admin",
-      "id": 0
-    },
-    {
-      "firstName": "Sharon",
-      "lastName": "D",
-      "userEmail": "sharon@gmail.com",
-      "password": "Sharon!23",
-      "isLogged": true,
-      "role": "User",
-      "id": 1
-    },
-    {
-      "firstName": "harshan",
-      "lastName": "A",
-      "userEmail": "harshan@gmail.com",
-      "password": "Harshan!2",
-      "isLogged": false,
-      "role": "User",
-      "id": 2
-    },
-    {
-      "firstName": "hemanth",
-      "lastName": "b",
-      "userEmail": "hemanth@gmail.com",
-      "password": "Hemanth!234",
-      "isLogged": false,
-      "role": "User",
-      "id": 3
-    }
-  ],
-  "task": [
-    {
-      "id": 1,
-      "userId": 1,
-      "firstName": "Sharon",
-      "task": "sadvs"
-    },
-    {
-      "id": 2,
-      "userId": 1,
-      "firstName": "Sharon",
-      "task": "svgdfcb"
-    },
-    {
-      "id": 3,
-      "userId": 2,
-      "firstName": "harshan",
-      "task": "sdvs"
-    },
-    {
-      "id": 4,
-      "userId": 3,
-      "firstName": "hemanth",
-      "task": "dhfb"
-    },
-    {
-      "id": 5,
-      "userId": 1,
-      "firstName": "Sharon",
-      "task": "rfgdf"
-    },
-    {
-      "id": 6,
-      "userId": 2,
-      "firstName": "harshan",
-      "task": "xc bxb"
-    }
-  ]
+    "userDetails": [{
+            "firstName": "admin",
+            "lastName": "1",
+            "userEmail": "admin123@gmail.com",
+            "password": "Admin!234",
+            "isLogged": false,
+            "role": "Admin",
+            "id": 0
+        },
+        {
+            "firstName": "Sharon",
+            "lastName": "D",
+            "userEmail": "sharon@gmail.com",
+            "password": "Sharon!23",
+            "isLogged": false,
+            "role": "User",
+            "id": 1
+        },
+        {
+            "firstName": "harshan",
+            "lastName": "A",
+            "userEmail": "harshan@gmail.com",
+            "password": "Harshan!2",
+            "isLogged": false,
+            "role": "User",
+            "id": 2
+        },
+        {
+            "firstName": "hemanth",
+            "lastName": "b",
+            "userEmail": "hemanth@gmail.com",
+            "password": "Hemanth!234",
+            "isLogged": false,
+            "role": "User",
+            "id": 3
+        }
+    ],
+    "task": [
+
+    ]
 }
