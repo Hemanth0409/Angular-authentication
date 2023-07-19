@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { taskdetails } from 'src/model/task';
 import { userDetails } from 'src/model/userDetails';
+import { UserDetailsService } from './user-details.service';
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router,private userservice:UserDetailsService) { }
   userDetails = "http://localhost:3000/userDetails";
   taskdata = "http://localhost:3000/task";
 
@@ -18,8 +19,9 @@ export class TaskService {
     return this.http.get<userDetails[]>(url);
   }
   fetchTask(id: number) {
-    return this.http.get<taskdetails[]>(this.taskdata + '?userId_like=' + id);
+    return this.http.get<taskdetails[]>(this.taskdata + '?userId=' + id);
   }
+
   // updatetask(id: number) {
   //   return this.http.put<taskdetails[]>(this.taskdata + '?id_like=' + id);
   // }
@@ -29,9 +31,8 @@ export class TaskService {
   getUser() {
     return this.http.get<taskdetails[]>(this.taskdata);
   }
-  userTask(){
-    return this.http.get<taskdetails[]>(this.taskdata );
-  }
+
+  
   taskDetails(data: taskdetails) {
     return this.http.post<taskdetails[]>(this.taskdata, data).subscribe(() => {
       const Toast = Swal.mixin({
@@ -45,6 +46,7 @@ export class TaskService {
         icon: 'success',
         title: 'Task Assigned successfully'
       }).then(() => {
+        this.userservice.taskDetails(data.userId)
         this.router.navigate(['/home'])
       })
     })

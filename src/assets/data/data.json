@@ -1,60 +1,45 @@
 {
-  "userDetails": [
-    {
-      "firstName": "admin",
-      "lastName": "1",
-      "userEmail": "admin123@gmail.com",
-      "password": "Admin!234",
-      "isLogged": false,
-      "role": "Admin",
-      "id": 0
-    },
-    {
-      "firstName": "Sharon",
-      "lastName": "D",
-      "userEmail": "sharon@gmail.com",
-      "password": "Sharon!23",
-      "isLogged": false,
-      "role": "User",
-      "id": 1
-    },
-    {
-      "firstName": "harshan",
-      "lastName": "A",
-      "userEmail": "harshan@gmail.com",
-      "password": "Harshan!2",
-      "isLogged": false,
-      "role": "User",
-      "id": 2
-    },
-    {
-      "firstName": "hemanth",
-      "lastName": "b",
-      "userEmail": "hemanth@gmail.com",
-      "password": "Hemanth!234",
-      "isLogged": false,
-      "role": "User",
-      "id": 3
-    }
-  ],
-  "task": [
-    {
-      "id": 1,
-      "userId": 1,
-      "firstName": "Sharon",
-      "task": "dbfd",
-      "status": "assigned",
-      "assginedDate": "7/19/2023",
-      "deadLine": 1
-    },
-    {
-      "id": 2,
-      "userId": 2,
-      "firstName": "harshan",
-      "task": "svf",
-      "status": "assigned",
-      "assginedDate": "7/19/2023",
-      "deadLine": 1
-    }
-  ]
+    "userDetails": [{
+            "firstName": "admin",
+            "lastName": "1",
+            "userEmail": "admin123@gmail.com",
+            "password": "Admin!234",
+            "isLogged": false,
+            "role": "Admin",
+            "id": 0
+        },
+        {
+            "firstName": "Sharon",
+            "lastName": "D",
+            "userEmail": "sharon@gmail.com",
+            "password": "Sharon!23",
+            "isLogged": false,
+            "role": "User",
+            "taskAssigned": true,
+            "id": 1
+        },
+        {
+            "firstName": "harshan",
+            "lastName": "A",
+            "userEmail": "harshan@gmail.com",
+            "password": "Harshan!2",
+            "isLogged": false,
+            "taskAssigned": true,
+            "role": "User",
+            "id": 2
+        },
+        {
+            "firstName": "hemanth",
+            "lastName": "b",
+            "userEmail": "hemanth@gmail.com",
+            "password": "Hemanth!234",
+            "taskAssigned": true,
+            "isLogged": false,
+            "role": "User",
+            "id": 3
+        }
+    ],
+    "task": [
+
+    ]
 }

@@ -11,7 +11,7 @@ export class UserComponent implements OnInit{
   fetchDetails:taskdetails[]=[];
 
   taskInfo(id: number) {
-    return this.taskDetails.userTask().subscribe((res) => this.fetchDetails = res);
+    return this.taskDetails.getUser().subscribe((res) => this.fetchDetails = res);
   }
 
   ngOnInit(): void {

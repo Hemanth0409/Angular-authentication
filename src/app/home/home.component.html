@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             <tr class="text-center" *ngFor="let x of details">
-                <ng-container *ngIf="x.role=='User'">
+                <ng-container *ngIf="x.role=='User'&&x.taskAssigned==true">
                     <ng-container>
                         <th scope="row">{{x.id}}</th>
                         <td>{{x.firstName|uppercase}}</td>
@@ -92,7 +92,7 @@
                             <span *ngIf="user.role=='User'">{{user.firstName}}</span>
                         </option>
                     </select>
-                    <label for="Task">No of Days to complete</label> <input type="number" class="form-control" formControlName="deadLine" [(ngModel)]="userTask.deadLine">
+                    <label for="Task">No of Days to complete</label> <input type="number" min="1" class="form-control" formControlName="deadLine" [(ngModel)]="userTask.deadLine">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" (click)="createTask()" data-bs-dismiss="modal">Assign</button>

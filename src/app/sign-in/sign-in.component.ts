@@ -85,7 +85,7 @@ export class SignInComponent implements OnInit {
           }
           return true;
 
-        }
+      }
 
         return false
       });

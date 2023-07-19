@@ -30,14 +30,21 @@ export class UserDetailsService {
     })
   }
   isLogged(form: userDetails, id: number) {
-    let Url = this.userDetails + '/' + id ;
+    let Url = this.userDetails + '/' + id;
     form.isLogged = true;
     return this.http.put(Url, form).subscribe(() => { });
   }
-  isLoggedOff(form:userDetails, id: number) {
-    let Url = this.userDetails + '/' + id ;
+  isLoggedOff(form: userDetails, id: number) {
+    let Url = this.userDetails + '/' + id;
     form.isLogged = false;
     return this.http.put(Url, form).subscribe(() => { });
+  }
+  taskDetails(id: number) {
+    let assignUrl = this.userDetails + '/' + id;
+    this.http.get<userDetails>(assignUrl).subscribe((res)=>{
+      res.taskAssigned=true;
+      this.http.put(assignUrl,res).subscribe();
+    })
   }
   validateUser() {
     return this.http.get<userDetails[]>(this.userDetails);
