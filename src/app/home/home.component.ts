@@ -68,7 +68,8 @@ export class HomeComponent implements OnInit {
   //   return this.taskdetails.updatetask(id).subscribe((res) => this.fetchDetails = res)
   // }
   removeTask(id: number) {
-    return this.taskdetails.deleteTask(id).subscribe((res) => this.fetchDetails = res);
+    this.taskdetails.deleteTask(id);
+
   }
 
   ngOnInit(): void {

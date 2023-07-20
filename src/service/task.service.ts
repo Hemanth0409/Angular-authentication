@@ -10,14 +10,15 @@ import { UserDetailsService } from './user-details.service';
 })
 export class TaskService {
 
-  constructor(private http: HttpClient, private router: Router,private userservice:UserDetailsService) { }
+  constructor(private http: HttpClient, private router: Router, private userservice: UserDetailsService) { }
   userDetails = "http://localhost:3000/userDetails";
   taskdata = "http://localhost:3000/task";
 
   fetchId(firstName: string) {
-    const url = this.userDetails + '/?firstName=' + firstName;
+    const url = this.userDetails + '?firstName=' + firstName;
     return this.http.get<userDetails[]>(url);
   }
+
   fetchTask(id: number) {
     return this.http.get<taskdetails[]>(this.taskdata + '?userId=' + id);
   }
@@ -25,14 +26,29 @@ export class TaskService {
   // updatetask(id: number) {
   //   return this.http.put<taskdetails[]>(this.taskdata + '?id_like=' + id);
   // }
-  deleteTask(id:number){
-    return this.http.delete<taskdetails[]>(this.taskdata + '?id_like=' + id);
+  deleteTask(id: number) {
+  const url=this.taskdata+'/'+id;
+    return this.http.delete(url).subscribe(()=>{
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+      })
+      Toast.fire({
+        icon: 'success',
+        title: 'Task Deleted successfully'
+      }).then(()=>{
+        this.router.navigate(['/home']);
+      })
+    }); 
   }
   getUser() {
     return this.http.get<taskdetails[]>(this.taskdata);
   }
 
-  
+
   taskDetails(data: taskdetails) {
     return this.http.post<taskdetails[]>(this.taskdata, data).subscribe(() => {
       const Toast = Swal.mixin({

@@ -53,8 +53,8 @@
                                                         <td>{{task.deadLine}}(number of days)</td>
                                                         <td>{{task.status}}</td>
                                                         <td>
-                                                            <button> update</button>
-                                                            <button (click)="removeTask(task.id)"> delete </button>
+                                                            <button data-bs-dismiss="modal"> update</button>
+                                                            <button data-bs-dismiss="modal" (click)="removeTask(task.id)"> delete </button>
                                                         </td>
                                                     </tr>
                                                 </tbody>

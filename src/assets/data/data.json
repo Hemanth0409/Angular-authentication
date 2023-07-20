@@ -40,24 +40,5 @@
       "id": 3
     }
   ],
-  "task": [
-    {
-      "id": 1,
-      "userId": 1,
-      "firstName": "Sharon",
-      "task": "add data",
-      "status": "assigned",
-      "assginedDate": "7/20/2023",
-      "deadLine": 1
-    },
-    {
-      "id": 2,
-      "userId": 2,
-      "firstName": "harshan",
-      "task": "sdg",
-      "status": "assigned",
-      "assginedDate": "7/20/2023",
-      "deadLine": 1
-    }
-  ]
+  "task": []
 }
