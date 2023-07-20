@@ -79,7 +79,7 @@ export class SignInComponent implements OnInit {
               icon: 'success',
               title: 'Logged successfully',
             }).then(() => {
-              this.router.navigate(['/user']);
+              this.router.navigate(['user/'+details.id]);
               this.sub.validateSubjectUser(true)
             });
           }

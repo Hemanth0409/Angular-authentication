@@ -5,16 +5,22 @@
             <th scope="col">Assigned Date</th>
             <th scope="col">Dead Line</th>
             <th scope="col">status</th>
-
         </tr>
     </thead>
     <tbody>
-        <tr class="text-center" *ngFor="let task of fetchDetails">
-            <td>{{task.task}}</td>
-            <td>{{task.assginedDate}}</td>
-            <td>{{task.deadLine}}(number of days)</td>
-            <td>{{task.status}}</td>
 
+        <tr class="text-center" *ngFor="let task of fetchDetails">
+            <ng-container *ngIf="task.status=='assigned'">
+                <td>{{task.task}}</td>
+                <td>{{task.assginedDate}}</td>
+                <td>{{task.deadLine}}(number of days)</td>
+                <td>{{task.status}}</td>
+            </ng-container>
         </tr>
+
     </tbody>
 </table>
+<ng-container *ngIf="taskFound">
+
+    <h5 class="text-center">No task Found </h5>
+</ng-container>

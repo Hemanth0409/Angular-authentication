@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit {
   getId() {
     return this.taskdetails.fetchId(this.userTask.firstName).subscribe((res) => {
       this.userTask.userId = res[0].id;
-
     })
   }
   taskActive: any;
@@ -57,10 +56,7 @@ export class HomeComponent implements OnInit {
         this.userD.id=res[0].id;
         this.userD.taskAssigned=true;
       }
-      // else if(res.length==0){
-      //   this.userD.id=res[0].id;
-      //   this.userD.taskAssigned=false;
-      // }
+   
     })
     this.assignTask.reset();
   }

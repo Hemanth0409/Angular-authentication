@@ -16,7 +16,7 @@ const routes: Routes = [
     path: 'home', component: HomeComponent, /*canActivate: [userGuard]*/
   },
   {
-    path: 'user', component: UserComponent,/*canActivate: [userGuard]*/
+    path: 'user/:id', component: UserComponent,/*canActivate: [userGuard]*/
   }
 
 ];
