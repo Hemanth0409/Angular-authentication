@@ -47,26 +47,25 @@ export class HomeComponent implements OnInit {
       this.userTask.userId = res[0].id;
     })
   }
-  taskActive: any;
+
   createTask() {
     this.taskdetails.taskDetails(this.userTask);
-    this.taskdetails.fetchTask(this.userTask.userId).subscribe((res)=>{
-      console.log(res);
-      if(res.length>0){
-        this.userD.id=res[0].id;
-        this.userD.taskAssigned=true;
+    this.taskdetails.fetchTask(this.userTask.userId).subscribe((res) => {
+      if (res.length > 0) {
+        this.userD.id = res[0].id;
+        this.userD.taskAssigned = true;
       }
-   
     })
     this.assignTask.reset();
   }
 
   taskInfo(id: number) {
-    return this.taskdetails.fetchTask(id).subscribe((res) => this.fetchDetails = res);
+    this.taskdetails.fetchTask(id).subscribe((res) => {
+      this.fetchDetails = res;
+      console.log(this.fetchDetails)
+    });
   }
-  // updateTaskInfo(id: number) {
-  //   return this.taskdetails.updatetask(id).subscribe((res) => this.fetchDetails = res)
-  // }
+
   removeTask(id: number) {
     this.taskdetails.deleteTask(id);
 

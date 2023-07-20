@@ -23,7 +23,7 @@ export class TaskService {
     return this.http.get<taskdetails[]>(this.taskdata + '?userId=' + id);
   }
 
-  // updatetask(id: number) {
+  // updatetask(id: number,) {
   //   return this.http.put<taskdetails[]>(this.taskdata + '?id_like=' + id);
   // }
   deleteTask(id: number) {
