@@ -13,8 +13,16 @@ export class UserComponent implements OnInit {
   fetchDetails: taskdetails[] = [];
   userDetails: userDetails[] = [];
   userId!: number
-  taskInfo(id: number) {
+  taskInfo() {
     return this.taskDetails.getUser().subscribe((res) => this.fetchDetails = res);
+  }
+  updateTask(id: number, task: taskdetails) {
+    if(task.status=='Assigner'){
+    task.status='Task Started'}
+    else{
+      task.status='Completed'
+    }
+    return this.taskDetails.updatetask(id, task);
   }
   taskFound = false;
   ngOnInit(): void {

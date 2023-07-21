@@ -65,10 +65,8 @@ export class HomeComponent implements OnInit {
     });
   }
   updateTask(id: number, task: taskdetails) {
-     close();
-     return this.taskdetails.updatetask(id, task);
-   
-  }
+       return this.taskdetails.updatetask(id, task);
+     }
 
   removeTask(id: number) {
     this.taskdetails.deleteTask(id);

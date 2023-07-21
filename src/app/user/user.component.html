@@ -8,19 +8,51 @@
         </tr>
     </thead>
     <tbody>
+        <ng-container *ngFor="let task of fetchDetails">
+            <tr class="text-center">
+                <ng-container *ngIf="task.status=='assigned'">
+                    <td>{{task.task}}</td>
+                    <td>{{task.assginedDate}}</td>
+                    <td>{{task.deadLine}}(number of days)</td>
+                    <td> <button (click)="updateTask(task.id,task)">Start the Task</button></td>
 
-        <tr class="text-center" *ngFor="let task of fetchDetails">
-            <ng-container *ngIf="task.status=='assigned'">
-                <td>{{task.task}}</td>
-                <td>{{task.assginedDate}}</td>
-                <td>{{task.deadLine}}(number of days)</td>
-                <td>{{task.status}}</td>
-            </ng-container>
-        </tr>
+                </ng-container>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+<table class="table mt-5">
 
+    <tbody>
+        <ng-container>
+
+            <tr class="text-center" *ngFor="let task of fetchDetails">
+                <ng-container *ngIf="task.status=='Task Started'">
+                    <td>{{task.task}}</td>
+                    <td>{{task.assginedDate}}</td>
+                    <td>{{task.deadLine}}(number of days)</td>
+                    <td> <button (click)="updateTask(task.id,task)">Completed</button></td>
+                </ng-container>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+
+<table class="table mt-5">
+    <tbody>
+
+        <ng-container *ngFor="let task of fetchDetails">
+            <tr class="text-center">
+                <ng-container *ngIf="task.status=='Completed'">
+                    <td>{{task.task}}</td>
+                    <td>{{task.assginedDate}}</td>
+                    <td>{{task.deadLine}}(number of days)</td>
+                    <td>{{task.status}}</td>
+                </ng-container>
+            </tr>
+        </ng-container>
     </tbody>
 </table>
 <ng-container *ngIf="taskFound">
-
     <h5 class="text-center">No task Found </h5>
 </ng-container>
