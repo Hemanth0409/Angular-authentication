@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   constructor(private userDetail: UserDetailsService, private taskdetails: TaskService, private http: HttpClient) { }
 
   details: userDetails[] = [];
-  fetchDetails: taskdetails[] = [];
   userD: userDetails = {
     id: 0,
     firstName: '',
@@ -61,9 +60,14 @@ export class HomeComponent implements OnInit {
 
   taskInfo(id: number) {
     this.taskdetails.fetchTask(id).subscribe((res) => {
-      this.fetchDetails = res;
-      console.log(this.fetchDetails)
+      this.taskDetails = res;
+
     });
+  }
+  updateTask(id: number, task: taskdetails) {
+     close();
+     return this.taskdetails.updatetask(id, task);
+   
   }
 
   removeTask(id: number) {
@@ -77,6 +81,7 @@ export class HomeComponent implements OnInit {
     })
     this.taskdetails.getUser().subscribe((res) => {
       this.taskDetails = res
+
     })
     this.task = new FormControl('', [Validators.required]);
     this.user = new FormControl('', [Validators.required]);

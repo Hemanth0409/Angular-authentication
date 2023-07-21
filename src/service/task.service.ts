@@ -23,12 +23,27 @@ export class TaskService {
     return this.http.get<taskdetails[]>(this.taskdata + '?userId=' + id);
   }
 
-  // updatetask(id: number,) {
-  //   return this.http.put<taskdetails[]>(this.taskdata + '?id_like=' + id);
-  // }
+  updatetask(id: number, taskDetails: taskdetails) {
+    const updateUrl = this.taskdata + '/' + id;
+    return this.http.put<taskdetails[]>(updateUrl, taskDetails).subscribe(() => {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        timer:1000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Item updated successfully'
+      })
+    }
+    )
+  }
   deleteTask(id: number) {
-  const url=this.taskdata+'/'+id;
-    return this.http.delete(url).subscribe(()=>{
+    const url = this.taskdata + '/' + id;
+    return this.http.delete(url).subscribe(() => {
       const Toast = Swal.mixin({
         toast: true,
         position: 'top',
@@ -39,10 +54,10 @@ export class TaskService {
       Toast.fire({
         icon: 'success',
         title: 'Task Deleted successfully'
-      }).then(()=>{
+      }).then(() => {
         this.router.navigate(['/home']);
       })
-    }); 
+    });
   }
   getUser() {
     return this.http.get<taskdetails[]>(this.taskdata);

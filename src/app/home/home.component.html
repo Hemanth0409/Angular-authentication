@@ -1,5 +1,5 @@
 <div class="container">
-    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#createBackdrop">
         Add Task
     </button>
     <table class="table">
@@ -20,7 +20,7 @@
                         <td>{{x.userEmail}}</td>
 
                         <td>
-                            <button data-bs-toggle="modal" data-bs-target="#modelViewTask" (click)="taskInfo(x.id)"><i
+                            <button data-bs-toggle="modal" data-bs-target="#modelViewTask" data-bs-dismiss="modal" (click)="taskInfo(x.id)"><i
                                 class="fa-solid fa-list-check border broder-0">
                                 <ng-container *ngFor="let task of taskDetails">
                                 </ng-container>
@@ -47,13 +47,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr *ngFor="let task of fetchDetails">
+                                                    <tr *ngFor="let task of taskDetails">
                                                         <td>{{task.task}}</td>
                                                         <td>{{task.assginedDate}}</td>
                                                         <td>{{task.deadLine}}(number of days)</td>
                                                         <td>{{task.status}}</td>
                                                         <td>
-                                                            <button data-bs-toggle="modal" data-bs-target="#modelUpdateTask">update</button>
+                                                            <button data-bs-dismiss="modal" data-bs-target="#modelUpdateTask" data-bs-toggle="modal">update</button>
                                                             <button data-bs-dismiss="modal" (click)="removeTask(task.id)"> delete </button>
                                                         </td>
                                                     </tr>
@@ -77,12 +77,12 @@
 </div>
 
 <!-- Modal to create task -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="createBackdrop" data-bs-backdrop="create" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createBackdropLabel" aria-hidden="true">
     <form [formGroup]="assignTask">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <h5 class="modal-title" id="createBackdropLabel">Modal title</h5>
                 </div>
                 <div class="modal-body ">
                     <label for="Task">Task</label> <input type="text" class="form-control" formControlName="task" [(ngModel)]="userTask.task">
@@ -104,20 +104,21 @@
 </div>
 
 <!-- Update task -->
-<div class="modal fade" id="modelUpdateTask" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modelUpdateTaskLabel" aria-hidden="true">
+<div class="modal fade" id="modelUpdateTask" data-bs-backdrop="create" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modelUpdateTaskLabel" aria-hidden="true">
 
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modelUpdateTaskLabel">Modal title</h5>
             </div>
-            <div class="modal-body">
-                <label for="Task">Task</label> <input type="text" class="form-control" formControlName="task" [(ngModel)]="userTask.task">
+            <div class="modal-body" *ngFor="let task of taskDetails">
+                <label for="Task">Task</label> <input type="text" class="form-control" [(ngModel)]="task.task">
 
-                <label for="Task">No of Days to complete</label> <input type="number" min="1" class="form-control" formControlName="deadLine" [(ngModel)]="userTask.deadLine">
+                <label for="Task">No of Days to complete</label> <input type="number" min="1" class="form-control" [(ngModel)]="task.deadLine">
+
             </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update Task</button>
+            <div class="modal-footer" *ngFor="let task of taskDetails">
+                <button type="submit" class="btn btn-primary" (click)="updateTask(task.id,task)" data-bs-dismiss="modal">Update Task</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
