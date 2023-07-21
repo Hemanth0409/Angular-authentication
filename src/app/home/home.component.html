@@ -87,7 +87,7 @@
                 <div class="modal-body ">
                     <label for="Task">Task</label> <input type="text" class="form-control" formControlName="task" [(ngModel)]="userTask.task">
                     <label for="user ">User</label>
-                    <select class="form-control" name="User" formControlName="user" [(ngModel)]="userTask.firstName" id="User">
+                    <select class="form-control" name="User" formControlName="user" (change)="getId()" [(ngModel)]="userTask.firstName" id="User">
                         <option *ngFor="let user of details">
                             <span *ngIf="user.role=='User'">{{user.firstName}}</span>
                         </option>
@@ -95,7 +95,7 @@
                     <label for="Task">No of Days to complete</label> <input type="number" min="1" class="form-control" formControlName="deadLine" [(ngModel)]="userTask.deadLine">
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update task</button>
+                    <button type="submit" class="btn btn-primary" (click)="createTask()" data-bs-dismiss="modal">Assign task</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -105,22 +105,22 @@
 
 <!-- Update task -->
 <div class="modal fade" id="modelUpdateTask" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modelUpdateTaskLabel" aria-hidden="true">
-    <form [formGroup]="assignTask">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modelUpdateTaskLabel">Modal title</h5>
-                </div>
-                <div class="modal-body ">
-                    <label for="Task">Task</label> <input type="text" class="form-control" formControlName="task" [(ngModel)]="userTask.task">
 
-                    <label for="Task">No of Days to complete</label> <input type="number" min="1" class="form-control" formControlName="deadLine" [(ngModel)]="userTask.deadLine">
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" (click)="createTask()" data-bs-dismiss="modal">Assign</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modelUpdateTaskLabel">Modal title</h5>
+            </div>
+            <div class="modal-body">
+                <label for="Task">Task</label> <input type="text" class="form-control" formControlName="task" [(ngModel)]="userTask.task">
+
+                <label for="Task">No of Days to complete</label> <input type="number" min="1" class="form-control" formControlName="deadLine" [(ngModel)]="userTask.deadLine">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update Task</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
-    </form>
+    </div>
+
 </div>

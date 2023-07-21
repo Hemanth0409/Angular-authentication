@@ -6,7 +6,8 @@
             "password": "Admin!234",
             "isLogged": false,
             "role": "Admin",
-            "id": 0
+            "id": 0,
+            "taskAssigned": true
         },
         {
             "firstName": "Sharon",
@@ -40,21 +41,30 @@
         }
     ],
     "task": [{
-            "id": 1,
-            "userId": 1,
-            "firstName": "Sharon",
-            "task": "add data",
-            "status": "assigned",
-            "assginedDate": "7/20/2023",
-            "deadLine": 1
-        },
-        {
             "id": 2,
             "userId": 2,
             "firstName": "harshan",
             "task": "sdg",
             "status": "assigned",
             "assginedDate": "7/20/2023",
+            "deadLine": 1
+        },
+        {
+            "id": 4,
+            "userId": 2,
+            "firstName": "harshan",
+            "task": "svdsv",
+            "status": "assigned",
+            "assginedDate": "7/21/2023",
+            "deadLine": 21
+        },
+        {
+            "id": 5,
+            "userId": 1,
+            "firstName": "Sharon",
+            "task": "adfdsg",
+            "status": "assigned",
+            "assginedDate": "7/21/2023",
             "deadLine": 1
         }
     ]
