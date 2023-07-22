@@ -1,4 +1,7 @@
 <div class="container">
+    <div class="col-3">
+        <input type="text" [(ngModel)]="searchText" class="form-control" placeholder="Search By Name">
+    </div>
     <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#createBackdrop">
         Add Task
     </button>
@@ -12,7 +15,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="text-center" *ngFor="let x of details">
+
+            <tr class="text-center" *ngFor="let x of details|search:searchText ">
                 <ng-container *ngIf="x.role=='User'&&x.taskAssigned==true">
                     <ng-container>
                         <th scope="row">{{x.id}}</th>
@@ -23,6 +27,7 @@
                             <button data-bs-toggle="modal" data-bs-target="#modelViewTask" data-bs-dismiss="modal" (click)="taskInfo(x.id)"><i
                                 class="fa-solid fa-list-check border broder-0">
                                 <ng-container *ngFor="let task of taskDetails">
+
                                 </ng-container>
                             </i></button>
 
@@ -32,8 +37,14 @@
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class=" text-center mt-5">
-                                            <h5>{{x.firstName}}'s</h5>
                                             <h5 class="modal-title" id="modelViewTaskLabel">Task</h5>
+                                            <div class="col-3">
+                                                <select name="filter" id="filter" [(ngModel)]="selectedStatus">
+                                                    <option value="assigned">Assigned</option>
+                                                    <option value="Task Started">Task Started</option>
+                                                    <option value="Completed">Completed</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="modal-body ">
                                             <table class="table">
@@ -47,13 +58,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr *ngFor="let task of taskDetails">
+                                                    <tr *ngFor="let task of taskDetails|filterstatus:selectedStatus">
                                                         <td>{{task.task}}</td>
                                                         <td>{{task.assginedDate}}</td>
                                                         <td>{{task.deadLine}}(number of days)</td>
                                                         <td>{{task.status}}</td>
-                                                        <td>
-                                                            <button data-bs-dismiss="modal" data-bs-target="#modelUpdateTask" data-bs-toggle="modal">update</button>
+                                                        <td *ngIf="task.status=='assigned'||task.status=='Task Started'">
+                                                            <button data-bs-toggle="modal" data-bs-target="#modelUpdateTask" data-bs-dismiss="modal">update</button>
                                                             <button data-bs-dismiss="modal" (click)="removeTask(task.id)"> delete </button>
                                                         </td>
                                                     </tr>
@@ -104,9 +115,9 @@
 </div>
 
 <!-- Update task -->
-<div class="modal fade" id="modelUpdateTask" data-bs-backdrop="create" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modelUpdateTaskLabel" aria-hidden="true">
+<div class="modal fade" id="modelUpdateTask" data-bs-backdrop="update" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modelUpdateTaskLabel" aria-hidden="true">
 
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modelUpdateTaskLabel">Modal title</h5>
@@ -118,7 +129,7 @@
 
             </div>
             <div class="modal-footer" *ngFor="let task of taskDetails">
-                <button type="submit" class="btn btn-primary" (click)="updateTask(task.id,task)" data-bs-dismiss="modal">Update Task</button>
+                <button type="submit" class="btn btn-primary" (click)="updateTask(task.id,task)">Update Task</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>

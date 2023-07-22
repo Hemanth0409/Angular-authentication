@@ -37,6 +37,9 @@ export class TaskService {
       Toast.fire({
         icon: 'success',
         title: 'Item updated successfully'
+      }).then(()=>
+      {
+        this.router.navigate(['/home ']);
       })
     }
     )

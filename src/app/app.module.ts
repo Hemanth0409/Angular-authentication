@@ -14,6 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
+import { SortPipe } from './sort.pipe';
+import { StatusPipe } from './status.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,10 @@ import { UserComponent } from './user/user.component';
     RegisterComponent,
     SignInComponent,
     HomeComponent,
-    UserComponent
+    UserComponent,
+    SortPipe,
+    StatusPipe,
+  
   ],
   imports: [
     BrowserModule,

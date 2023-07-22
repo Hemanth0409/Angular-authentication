@@ -40,7 +40,8 @@ export class HomeComponent implements OnInit {
   task!: FormControl;
   user!: FormControl;
   deadLine!: FormControl;
-
+  searchText:any;
+  selectedStatus:any;
   getId() {
     return this.taskdetails.fetchId(this.userTask.firstName).subscribe((res) => {
       this.userTask.userId = res[0].id;
@@ -50,12 +51,13 @@ export class HomeComponent implements OnInit {
   createTask() {
     this.taskdetails.taskDetails(this.userTask);
     this.taskdetails.fetchTask(this.userTask.userId).subscribe((res) => {
-      if (res.length > 0) {
+      if (res.length > 0) {  
         this.userD.id = res[0].id;
         this.userD.taskAssigned = true;
       }
     })
     this.assignTask.reset();
+  this.ngOnInit();
   }
 
   taskInfo(id: number) {

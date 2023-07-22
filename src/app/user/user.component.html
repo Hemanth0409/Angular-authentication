@@ -1,5 +1,12 @@
 <table class="table">
     <thead>
+        <div class="col-3">
+            <select name="filter" id="filter" [(ngModel)]="selectedStatus">
+                <option value="assigned">Assigned</option>
+                <option value="Task Started">Task Started</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
         <tr class="text-center">
             <th scope="col">Task</th>
             <th scope="col">Assigned Date</th>
@@ -8,7 +15,7 @@
         </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let task of fetchDetails">
+        <ng-container *ngFor="let task of fetchDetails|filterstatus:selectedStatus">
             <tr class="text-center">
                 <ng-container *ngIf="task.status=='assigned'">
                     <td>{{task.task}}</td>
@@ -31,7 +38,7 @@
                     <td>{{task.task}}</td>
                     <td>{{task.assginedDate}}</td>
                     <td>{{task.deadLine}}(number of days)</td>
-                    <td> <button (click)="updateTask(task.id,task)">Completed</button></td>
+                    <td> <button (click)="updateTask(task.id,task)">Task Completed</button></td>
                 </ng-container>
             </tr>
         </ng-container>

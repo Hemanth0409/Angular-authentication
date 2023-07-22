@@ -20,7 +20,7 @@ export const userGuard: CanActivateFn = (route, state) => {
     })
     Toast.fire({
       icon: 'warning',
-      title: 'Logged In Successfully'
+      title: 'Logged In First'
     })
     return false;  
   }

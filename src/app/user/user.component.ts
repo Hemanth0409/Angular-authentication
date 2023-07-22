@@ -13,11 +13,12 @@ export class UserComponent implements OnInit {
   fetchDetails: taskdetails[] = [];
   userDetails: userDetails[] = [];
   userId!: number
+  selectedStatus:any;
   taskInfo() {
     return this.taskDetails.getUser().subscribe((res) => this.fetchDetails = res);
   }
   updateTask(id: number, task: taskdetails) {
-    if(task.status=='Assigner'){
+    if(task.status=='Assigned'){
     task.status='Task Started'}
     else{
       task.status='Completed'
